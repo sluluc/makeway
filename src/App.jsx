@@ -169,7 +169,7 @@ export default function App() {
     <div style={{ minHeight: "100vh", background: "#f8f6f2", color: "#1c1b19" }}>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;1,300;1,400&family=Karla:wght@300;400;500&display=swap');
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }html, body, #root { width: 100%; min-height: 100vh; }
         .app { opacity: 0; transition: opacity 0.6s ease; }
         .app.in { opacity: 1; }
 
