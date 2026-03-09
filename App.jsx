@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 // CONFIG — paste your Eventbrite token here
 // Get one free at: https://www.eventbrite.com/platform/api
 // ─────────────────────────────────────────────
-const EVENTBRITE_TOKEN = "CDC3MLDWUQDTLYRPDWEJ";
+const EVENTBRITE_TOKEN = "YOUR_TOKEN_HERE";
 const USE_LIVE_API = EVENTBRITE_TOKEN !== "YOUR_TOKEN_HERE";
 const FORMSPREE_URL = "https://formspree.io/f/mkoqolra";
 
@@ -125,21 +125,7 @@ export default function App() {
   const [saved, setSaved] = useState([]);
   const [animIn, setAnimIn] = useState(false);
   const [apiError, setApiError] = useState(false);
-  const [econUnlocked, setEconUnlocked] = useState(false);
-  const [pinInput, setPinInput] = useState("");
-  const [pinError, setPinError] = useState(false);
   const inputRef = useRef();
-
-  function handlePinSubmit(e) {
-    e.preventDefault();
-    if (pinInput === "2325") {
-      setEconUnlocked(true);
-      setPinError(false);
-    } else {
-      setPinError(true);
-      setPinInput("");
-    }
-  }
 
   useEffect(() => { setTimeout(() => setAnimIn(true), 80); }, []);
 
@@ -438,27 +424,6 @@ export default function App() {
         )}
 
         {view === "economics" && (
-          !econUnlocked ? (
-            <div style={{ minHeight: "60vh", display: "flex", alignItems: "center", justifyContent: "center" }}>
-              <div style={{ background: "#f8f6f2", border: "1px solid #e8e4dc", padding: "48px 40px", width: "100%", maxWidth: 360, textAlign: "center" }}>
-                <div style={{ fontFamily: "Cormorant, serif", fontSize: 28, fontWeight: 300, marginBottom: 8 }}>Economics</div>
-                <div style={{ fontFamily: "Karla, sans-serif", fontSize: 12, color: "#9e9488", marginBottom: 28, letterSpacing: "0.3px" }}>Enter your PIN to continue</div>
-                <form onSubmit={handlePinSubmit}>
-                  <input
-                    type="password"
-                    value={pinInput}
-                    onChange={e => setPinInput(e.target.value)}
-                    placeholder="····"
-                    maxLength={4}
-                    style={{ width: "100%", padding: "12px", border: "1px solid #e8e4dc", background: "#fff", fontFamily: "Karla, sans-serif", fontSize: 20, textAlign: "center", letterSpacing: "8px", outline: "none", marginBottom: 12 }}
-                  />
-                  {pinError && <div style={{ fontFamily: "Karla, sans-serif", fontSize: 11, color: "#8c2a2a", marginBottom: 12 }}>Incorrect PIN — try again</div>}
-                  <button type="submit" style={{ width: "100%", background: "#1c1b19", color: "#f8f6f2", border: "none", padding: "11px", fontFamily: "Karla, sans-serif", fontSize: 10, letterSpacing: "1.5px", textTransform: "uppercase", cursor: "pointer" }}>Unlock</button>
-                </form>
-              </div>
-            </div>
-          ) :
-          (
           <div className="econ">
             <div className="econ-head">
               <div className="econ-title">Unit Economics</div>
@@ -519,7 +484,6 @@ export default function App() {
               Stripe processing: 2.9% + $0.30 · Stripe Connect payout: 0.25% + $0.25 · Infrastructure: $0.18 per booking · Commission: 15% of gross. Adjust as your real costs become clear.
             </div>
           </div>
-          )
         )}
       </div>
     </div>
