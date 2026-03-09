@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 // CONFIG — paste your Eventbrite token here
 // Get one free at: https://www.eventbrite.com/platform/api
 // ─────────────────────────────────────────────
-const EVENTBRITE_TOKEN = "CDC3MLDWUQDTLYRPDWEJ";
+const EVENTBRITE_TOKEN = import.meta.env.VITE_EVENTBRITE_TOKEN || "";
 const USE_LIVE_API = EVENTBRITE_TOKEN !== "YOUR_TOKEN_HERE";
 const FORMSPREE_URL = "https://formspree.io/f/mkoqolra";
 
