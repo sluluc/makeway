@@ -87,11 +87,7 @@ async function fetchEventbrite(city) {
 }
 
 function getMockForCity(city) {
-  const key = city.toLowerCase().trim();
-  if (key.includes("portland")) return MOCK_BY_CITY.portland;
-  if (key.includes("new york") || key.includes("nyc")) return MOCK_BY_CITY["new york"];
-  if (key.includes("san francisco") || key.includes("sf")) return MOCK_BY_CITY["san francisco"];
-  return MOCK_BY_CITY.seattle;
+  return [];
 }
 
 // ─────────────────────────────────────────────
