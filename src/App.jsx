@@ -80,28 +80,10 @@ function calcEcon(gross, pct) {
 }
 
 async function fetchEventbrite(city) {
-  const q = encodeURIComponent("craft OR ceramics OR weaving OR printmaking OR bookbinding");
-  const loc = encodeURIComponent(city);
-  const url = `https://www.eventbriteapi.com/v3/events/search/?q=${q}&location.address=${loc}&categories=119&expand=venue,ticket_availability&token=${EVENTBRITE_TOKEN}`;
+  const url = `https://obxxc2fjrud2imcnthnuxizuxu0gtbyl.lambda-url.us-east-1.on.aws/?city=${encodeURIComponent(city)}`;
   const res = await fetch(url);
   const data = await res.json();
-  return (data.events || []).slice(0, 8).map((e, i) => ({
-    id: `eb-${e.id}`,
-    title: e.name.text,
-    studio: e.organizer?.name || "Local Studio",
-    category: "Arts & Crafts",
-    price: e.ticket_availability?.minimum_ticket_price?.major_value || 0,
-    spots: e.ticket_availability?.quantity_available || 10,
-    date: new Date(e.start.local).toLocaleDateString("en-US", { month: "short", day: "numeric" }),
-    duration: "—",
-    location: e.venue?.address?.city || city,
-    featured: i < 2,
-    img: ["🏺","🎨","🧵","📖","🌿","🖨️","🧶","🕯️"][i % 8],
-    rating: (4.5 + Math.random() * 0.5).toFixed(1),
-    reviews: Math.floor(Math.random() * 40 + 10),
-    source: "eventbrite",
-    url: e.url,
-  }));
+  return (data.events || []);
 }
 
 function getMockForCity(city) {
